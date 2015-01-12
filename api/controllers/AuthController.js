@@ -14,7 +14,12 @@ module.exports = {
 			if (!valid) {
 				return res.json(401, {err: 'invalid username or password'});
 			} else {
-				res.json({user: user, token: sailsTokenAuth.issueToken({sid: user.id})});
+				var payload = {
+                    sub: user.id,
+                    iat: moment().unix(),
+                    exp: moment().add(14, 'days').unix()
+                };
+				res.json({user: user, token: sailsTokenAuth.issueToken(payload)});
 			}
 		});
 		})
@@ -32,7 +37,12 @@ module.exports = {
 				return;
 			}
 			if (user) {
-				res.json({user: user, token: sailsTokenAuth.issueToken({sid: user.id})});
+				var payload = {
+                    sub: user.id,
+                    iat: moment().unix(),
+                    exp: moment().add(14, 'days').unix()
+                };
+				res.json({user: user, token: sailsTokenAuth.issueToken(payload)});
 			}
 		});
 	}

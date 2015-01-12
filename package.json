@@ -25,7 +25,8 @@
     "jsonwebtoken": "~0.4.0",
     "sails-mongo": "*",
     "bcrypt": "~0.7.8",
-    "validator": "*"
+    "validator": "*",
+    "moment": "^2.8.4",
   },
   "scripts": {
     "start": "node app.js",
